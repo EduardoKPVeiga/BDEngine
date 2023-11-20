@@ -5,6 +5,7 @@ def main():
     # takes query from user
     answer = None
     while not (answer == cmds.import_cmds or answer == cmds.query_cmds or answer == cmds.exit_cmds):
+        print("Select action (" + cmds.import_cmds + ", " + cmds.query_cmds + ", " + cmds.exit_cmds + "):")
         answer = input(">> ")
     if (answer == cmds.import_cmds):
         main_import.Import()

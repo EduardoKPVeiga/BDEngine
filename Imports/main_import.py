@@ -7,7 +7,6 @@ def Import():
 
     option = None
     while not (option == cmds.from_mysql_cmds or option == cmds.from_postgres_cmds or option == cmds.from_csv_cmds):
-        print("Select action (" + cmds.import_cmds + ", " + cmds.query_cmds + ", " + cmds.exit_cmds + "):")
         option = input(">> ")
     if option == cmds.from_mysql_cmds:
         mysql.Import()

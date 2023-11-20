@@ -1,5 +1,7 @@
 # SQL
 from_cmds = "from"
+where_cmds = "where"
+order_by_cmds = "order by"
 
 # CMD
 import_cmds = "import"
