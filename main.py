@@ -8,7 +8,8 @@ def main():
         print("Select action (" + cmds.import_cmds + ", " + cmds.query_cmds + ", " + cmds.exit_cmds + "):")
         answer = input(">> ")
     if (answer == cmds.import_cmds):
-        main_import.Import()
+        if main_import.Import() == False:
+            return False
     elif (answer == cmds.query_cmds):
         print("query")
     elif (answer == cmds.exit_cmds):
@@ -18,4 +19,6 @@ def main():
     return True
 
 if __name__ == "__main__":
-    main()
+    main_success = False
+    while main_success == False:
+        main_success = main()

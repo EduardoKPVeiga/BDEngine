@@ -10,11 +10,14 @@ def Import():
     password = input('Password: ')
     print("")
 
-    print("Connecting to database...")
-    mysqlc.connect(host, database, user, password)
-    print("Connected.")
+    print("Connecting to database...\n")
+    if mysqlc.connect(host, database, user, password):
+        print("Connected.")
+    else:
+        print("\nReturning to main menu...\n")
+        return False
 
     print("")
     filename = input('Filename: ')
     os.system("mysqldump -u " + user + " --password=" + password + " -h " + host + " --xml " + database + " > Files/" + filename + ".xml")
-    return
+    return True

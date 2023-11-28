@@ -13,7 +13,7 @@ def connect(_host, _database, _user, _password):
                                             password = _password)
     except Error as e:
         print("Error while connecting to MySQL", e)
-    return
+    return False
 
 def disconnect():
     global cursor
