@@ -15,7 +15,7 @@ def Import():
         print("Connected.")
     else:
         print("\nReturning to main menu...\n")
-        return False
+        return True
 
     print("")
     filename = input('Filename: ')

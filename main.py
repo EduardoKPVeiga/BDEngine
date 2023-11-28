@@ -8,17 +8,15 @@ def main():
         print("Select action (" + cmds.import_cmds + ", " + cmds.query_cmds + ", " + cmds.exit_cmds + "):")
         answer = input(">> ")
     if (answer == cmds.import_cmds):
-        if main_import.Import() == False:
-            return False
+        return main_import.Import()
     elif (answer == cmds.query_cmds):
         print("query")
     elif (answer == cmds.exit_cmds):
-        print("exit")
+        print("Bye.")
         return False
-    
     return True
 
 if __name__ == "__main__":
-    main_success = False
-    while main_success == False:
-        main_success = main()
+    main_running = True
+    while main_running == True:
+        main_running = main()
