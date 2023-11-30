@@ -1,17 +1,21 @@
 from Imports import main_import
+from Queries import query_main
 import commands as cmds
 
 def main():
     # takes query from user
     answer = None
-    while not (answer == cmds.import_cmds or answer == cmds.query_cmds or answer == cmds.exit_cmds):
-        print("Select action (" + cmds.import_cmds + ", " + cmds.query_cmds + ", " + cmds.exit_cmds + "):")
+    while not (answer == cmds.IMPORT or answer == cmds.QUERY or answer == cmds.EXIT):
+        print("Select action (" + cmds.IMPORT + ", " + cmds.QUERY + ", " + cmds.EXIT + "):")
         answer = input(">> ")
-    if (answer == cmds.import_cmds):
+    if (answer == cmds.IMPORT):
         return main_import.Import()
-    elif (answer == cmds.query_cmds):
-        print("query")
-    elif (answer == cmds.exit_cmds):
+    elif (answer == cmds.QUERY):
+        query_running = True
+        while query_running:
+            command = input("(" + query_main.BDName + ") " + ">> ")
+            query_running = query_main.query(command)
+    elif (answer == cmds.EXIT):
         print("Bye.")
         return False
     return True

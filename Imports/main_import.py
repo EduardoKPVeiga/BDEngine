@@ -4,10 +4,10 @@ import commands as cmds
 
 def Import():
     option = None
-    while not (option == cmds.from_mysql_cmds or option == cmds.from_postgres_cmds or option == cmds.from_csv_cmds):
+    while not (option == cmds.FROM_MYSQL or option == cmds.FROM_CSV):
         option = input(">> ")
-    if option == cmds.from_mysql_cmds:
+    if option == cmds.FROM_MYSQL:
         return mysql.Import()
-    elif option == cmds.from_csv_cmds:
+    elif option == cmds.FROM_CSV:
         return csv.Import()
     return True

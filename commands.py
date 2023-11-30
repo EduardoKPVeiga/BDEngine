@@ -1,12 +1,20 @@
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 # SQL
-from_cmds = "from"
-where_cmds = "where"
-order_by_cmds = "order by"
+SELECT = "select"
+INSERT = "insert"
+DELETE = "delete"
+DATABASE = "database"
+TABLE = "table"
+DELETE_TABLE = DELETE + " " + TABLE
+FROM = "from"
+WHERE = "where"
+ORDER_BY = "order by"
+USE = "use"
 
 # CMD
-import_cmds = "import"
-query_cmds = "query"
-exit_cmds = "exit"
-from_mysql_cmds = from_cmds + " mysql"
-from_postgres_cmds = from_cmds + " postgres"
-from_csv_cmds = from_cmds + " csv"
+IMPORT = "import"
+QUERY = "query"
+EXIT = "exit"
+FROM_MYSQL = FROM + " mysql"
+FROM_CSV = FROM + " csv"
