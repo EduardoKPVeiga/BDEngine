@@ -1,14 +1,18 @@
 import commands as cmds
 from Queries.Searchs import query_search as search
+import xml.etree.ElementTree as ET
 
 def query(command):
     if command.find(cmds.USE) != -1:
         BDName_start = command.find(cmds.USE) + len(cmds.USE) + 1
         cmds.BDName = command[BDName_start:]
+
+        search.BDxml_tree = ET.parse(cmds.BD_FILE_PATH + cmds.BDName + '.xml')
+        search.BDxml_root = search.BDxml_tree.find("database")
     
     elif command.find(cmds.SELECT) != -1:
         if cmds.BDName != " ":
-            search.query(command)
+            return search.query(command)
         else:
             print("ERROR: no database selected")
 

@@ -8,6 +8,7 @@
 #
 
 BDName = " "
+BD_FILE_PATH = "Files/"
 
 # SQL
 SELECT = "pegue"
