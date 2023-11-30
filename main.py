@@ -13,7 +13,7 @@ def main():
     elif (answer == cmds.QUERY):
         query_running = True
         while query_running:
-            command = input("(" + query_main.BDName + ") " + ">> ")
+            command = input("(" + cmds.BDName + ") " + ">> ")
             query_running = query_main.query(command)
     elif (answer == cmds.EXIT):
         print("Bye.")

@@ -1,15 +1,24 @@
 # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
+# use bancoTeste
+# pegue (campo1,campo2,campo3) de 'tabela' onde 'condicao'
+#
+#
+#
+#
+
+BDName = " "
+
 # SQL
-SELECT = "select"
-INSERT = "insert"
-DELETE = "delete"
-DATABASE = "database"
-TABLE = "table"
+SELECT = "pegue"
+INSERT = "ponha"
+DELETE = "remova"
+DATABASE = "banco"
+TABLE = "tabela"
 DELETE_TABLE = DELETE + " " + TABLE
-FROM = "from"
-WHERE = "where"
-ORDER_BY = "order by"
+FROM = "de"
+WHERE = "onde"
+ORDER_BY = "ordene por"
 USE = "use"
 
 # CMD
