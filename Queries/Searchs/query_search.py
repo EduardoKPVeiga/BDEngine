@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 import commands as cmds
 import numpy as np
 

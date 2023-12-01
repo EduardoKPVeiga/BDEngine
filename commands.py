@@ -2,13 +2,14 @@
 
 # use bancoTeste
 # pegue (campo1,campo2,campo3) de 'tabela' onde 'condicao'
-#
+# pegue * de 'tabela'
 #
 #
 #
 
 BDName = " "
 BD_FILE_PATH = "Files/"
+LIST_TABLES_FILE_NAME = "list_tables.csv"
 
 # SQL
 SELECT = "pegue"

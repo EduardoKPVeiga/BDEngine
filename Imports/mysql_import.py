@@ -4,8 +4,9 @@ import xml.etree.ElementTree as ET
 import os
 import csv
 
-def Import():
+list_tables = []
 
+def Import():
     print("")
     host = input('Host: ')
     database = input('Database: ')
@@ -28,6 +29,7 @@ def Import():
     if os.path.exists(dir_path) == False:
         os.mkdir(dir_path)
     ConvertXmlToCsv(database)
+    CreateListTables()
 
     return True
 
@@ -42,6 +44,7 @@ def ConvertXmlToCsv(database : str):
     
     for table_structure in BDxml_root.findall('table_structure'):
         table_header_matrix.append([])
+        list_tables.append(table_structure.get('name'))
 
     cont = 0
     for table_structure in BDxml_root.findall('table_structure'):
@@ -93,3 +96,17 @@ def ConvertMatrixIntoCsv(table_matrix, fields_name_vector: list, filepath: str, 
 
             writer.writerow(dict_to_write)
             dict_to_write.clear()
+
+def CreateListTables():
+    script_dir = os.path.dirname("__main__")
+    cmds.BDName = "bdtest"
+    abs_file_path = os.path.join(script_dir, cmds.BD_FILE_PATH, cmds.BDName)
+
+    field_names = ['name', 'filename']
+
+    with open(abs_file_path + "/" + cmds.LIST_TABLES_FILE_NAME, 'w', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=field_names)
+        writer.writeheader()
+
+        for table in list_tables:
+            writer.writerow({field_names[0]:table, field_names[1]:table + '.csv'})
