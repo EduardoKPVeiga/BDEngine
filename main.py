@@ -1,11 +1,12 @@
 from Imports import main_import
 from Queries import query_main
+from Queries.Inserts import query_insert
 import commands as cmds
 
 def main():
     # takes query from user
     answer = None
-    while not (answer == cmds.IMPORT or answer == cmds.QUERY or answer == cmds.EXIT):
+    while not (answer == cmds.IMPORT or answer == cmds.INSERT or answer == cmds.QUERY or answer == cmds.EXIT):
         print("Select action (" + cmds.IMPORT + ", " + cmds.QUERY + ", " + cmds.EXIT + "):")
         answer = input(">> ")
     if (answer == cmds.IMPORT):

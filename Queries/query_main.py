@@ -2,9 +2,10 @@ import commands as cmds
 import csv
 import os
 from Queries.Searchs import query_search as search
+from Queries.Inserts import query_insert
 
 def query(command):
-    if command.find(cmds.USE) != -1:
+    if command.find(cmds.USE) != -1: 
         BDName_start = command.find(cmds.USE) + len(cmds.USE) + 1
         cmds.BDName = command[BDName_start:]
         SaveDatabaseInRam()
@@ -14,10 +15,10 @@ def query(command):
             return search.query(command)
         else:
             print("ERROR: no database selected")
-
     elif command.find(cmds.INSERT) != -1:
         if cmds.BDName != " ":
-            print("Insert")
+            print("Insert: Choose the TABLE")
+            query_insert.insert()
         else:
             print("ERROR: no database selected")
     

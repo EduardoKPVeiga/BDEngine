@@ -13,7 +13,7 @@ LIST_TABLES_FILE_NAME = "list_tables.csv"
 
 # SQL
 SELECT = "pegue"
-INSERT = "ponha"
+INTO = "ponhaem"
 DELETE = "remova"
 DATABASE = "banco"
 TABLE = "tabela"
@@ -22,8 +22,10 @@ FROM = "de"
 WHERE = "onde"
 ORDER_BY = "ordene por"
 USE = "use"
+DATA = "dados"
 
 # CMD
+INSERT = "insert"
 IMPORT = "import"
 QUERY = "query"
 EXIT = "exit"
