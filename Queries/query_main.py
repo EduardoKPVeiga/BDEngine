@@ -51,6 +51,7 @@ def SaveDatabaseInRam():
         cont_tables = 0
         for row in reader:
             search.data_select.append([])
+            search.list_tables.append(row.get('name'))
             with open(dir_path + "/" + row.get('filename'), newline='') as csvfile:
                 reader = csv.DictReader(csvfile)
                 cont = 0

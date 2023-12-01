@@ -1,3 +1,5 @@
+import os
+
 # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 # use bancoTeste
@@ -9,6 +11,7 @@
 
 BDName = " "
 BD_FILE_PATH = "Files/"
+ABS_FILE_PATH = os.path.join(os.path.dirname("__main__"), BD_FILE_PATH)
 LIST_TABLES_FILE_NAME = "list_tables.csv"
 
 # SQL
@@ -24,7 +27,7 @@ ORDER_BY = "ordene por"
 USE = "use"
 
 # CMD
-IMPORT = "import"
+IMPORT = "importar"
 QUERY = "query"
 EXIT = "exit"
 FROM_MYSQL = FROM + " mysql"

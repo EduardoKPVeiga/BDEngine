@@ -1,17 +1,17 @@
 import commands as cmds
+import csv
 import numpy as np
 
 BDxml_tree = 0
 BDxml_root = 0
 
 data_select = []
+list_tables = []
 columns = []
 
 def query(command):
     global data_select
     global columns
-    
-    data_select = []
 
     if command.find(" " + cmds.FROM + " ") == -1:
         print("ERROR: incorrect setence")
@@ -30,32 +30,26 @@ def query(command):
             break
 
     if list_words[1] == "*" or list_words[1] == "(*)":
-        for table_data in BDxml_root.findall('table_data'):
-            if table_data.get('name') == table_name:
-                for row in table_data.findall('row'):
-                    fields = []
-                    for field in row.findall('field'):
-                        fields.append(field.text)
-                    data_select.append(fields)
-
-                print(np.matrix(data_select))
+        for i in range(len(list_tables)):
+            if list_tables[i] == table_name:
+                print(np.matrix(data_select[i])) # melhorar o print
                 return True
 
-    if list_words[1].find(")") != -1:
-        if list_words[1].find("(") == -1:
-            print("ERROR: incorrect setence")
-            return True
+    # if list_words[1].find(")") != -1:
+    #     if list_words[1].find("(") == -1:
+    #         print("ERROR: incorrect setence")
+    #         return True
 
-    if list_words[1].find("(") != -1:
-        if list_words[1].find(")") == -1:
-            print("ERROR: incorrect setence")
-            return True
+    # if list_words[1].find("(") != -1:
+    #     if list_words[1].find(")") == -1:
+    #         print("ERROR: incorrect setence")
+    #         return True
 
-        else:
-            columns = list_words[1].split(",")
-            columns[0] = columns[0].replace("(", "")
-            columns[len(columns) - 1] = columns[len(columns) - 1].replace(")", "")
+    #     else:
+    #         columns = list_words[1].split(",")
+    #         columns[0] = columns[0].replace("(", "")
+    #         columns[len(columns) - 1] = columns[len(columns) - 1].replace(")", "")
 
-            for j in columns:
-                print(j)
+    #         for j in columns:
+    #             print(j)
     return True
