@@ -7,6 +7,7 @@ def Import():
     while not (option == cmds.FROM_MYSQL or option == cmds.FROM_CSV):
         option = input(">> ")
     if option == cmds.FROM_MYSQL:
+        mysql.ConvertXmlToCsv('bdtest')
         return mysql.Import()
     elif option == cmds.FROM_CSV:
         return csv.Import()
