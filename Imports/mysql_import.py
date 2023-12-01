@@ -23,6 +23,10 @@ def Import():
     print("")
     os.system("mysqldump -u " + user + " --password=" + password + " -h " + host + " --xml " + database + " > Files/" + database + ".xml")
 
+    script_dir = os.path.dirname("__main__")
+    dir_path = os.path.join(script_dir, cmds.BD_FILE_PATH)
+    if os.path.exists(dir_path) == False:
+        os.mkdir(dir_path)
     ConvertXmlToCsv(database)
 
     return True
@@ -75,11 +79,10 @@ def ConvertXmlToCsv(database : str):
 
 def ConvertMatrixIntoCsv(table_matrix, fields_name_vector: list, filepath: str, filename: str):
     script_dir = os.path.dirname("__main__")
-    name = filename + '.csv'
-    rel_path = os.path.join(filepath, name)
-    abs_file_path = os.path.join(script_dir, rel_path)
+    name = filename + ".csv"
+    abs_file_path = os.path.join(script_dir, filepath)
 
-    with open(abs_file_path, 'w', newline='') as csvfile:
+    with open(abs_file_path + "/" + name, 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fields_name_vector)
         dict_to_write = {}
         writer.writeheader()
