@@ -3,8 +3,8 @@
 # use bancoTeste
 # pegue (campo1,campo2,campo3) de 'tabela' onde 'condicao'
 # pegue * de 'tabela'
-#
-#
+# ponha-88888,KKKKKKK,PPPPPPP,0000.98-em-TESTE.csv
+# 
 #
 
 BDName = " "
@@ -13,7 +13,7 @@ LIST_TABLES_FILE_NAME = "list_tables.csv"
 
 # SQL
 SELECT = "pegue"
-INTO = "ponhaem"
+INTO = "em"
 DELETE = "remova"
 DATABASE = "banco"
 TABLE = "tabela"
@@ -25,7 +25,7 @@ USE = "use"
 DATA = "dados"
 
 # CMD
-INSERT = "insert"
+INSERT = "ponha"
 IMPORT = "import"
 QUERY = "query"
 EXIT = "exit"

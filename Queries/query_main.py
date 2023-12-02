@@ -17,8 +17,7 @@ def query(command):
             print("ERROR: no database selected")
     elif command.find(cmds.INSERT) != -1:
         if cmds.BDName != " ":
-            print("Insert: Choose the TABLE")
-            query_insert.insert()
+            query_insert.insert(command)
         else:
             print("ERROR: no database selected")
     

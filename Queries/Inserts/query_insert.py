@@ -1,18 +1,21 @@
-import xml.etree.ElementTree as ET
 import csv
 import commands as cmds
+import os
 
-def insert():
-   
-    tabela = input("(" + cmds.TABLE + ") " + ">> ")
+def insert(command:str):
+     
+    listacomandos = command.split('-')
     
-    #[[00000,'AAAAAAA','BBBBBBB',0000.00]] tipo esperado
+    tabela = listacomandos[3]
+           
+    dados = [listacomandos[1].split(',')]
     
-    dados = input("(" + cmds.DATA + ") " + ">> ") 
+    if listacomandos[2] != cmds.INTO:
+        print("Comando errado")
+        return True
     
-    print(dados, tabela)
-    
-    with open(tabela, 'a', newline='') as arquivo:
-        escritor_csv = csv.writer(arquivo)
-        for linha in dados:
-            escritor_csv.writerow(linha)
+    else:     
+        with open(tabela, 'a', newline='') as arquivo:
+            escritor_csv = csv.writer(arquivo)
+            for linha in dados:
+                escritor_csv.writerow(linha)
