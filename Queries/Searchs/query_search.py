@@ -7,11 +7,9 @@ BDxml_root = 0
 
 data_select = []
 list_tables = []
-columns = []
 
-def query(command):
+def query(command:str) -> bool:
     global data_select
-    global columns
 
     if command.find(" " + cmds.FROM + " ") == -1:
         print("ERROR: incorrect setence")
@@ -29,27 +27,41 @@ def query(command):
             table_name = word
             break
 
+    # pegue * de [table_name]
     if list_words[1] == "*" or list_words[1] == "(*)":
         for i in range(len(list_tables)):
             if list_tables[i] == table_name:
                 print(np.matrix(data_select[i])) # melhorar o print
                 return True
 
-    # if list_words[1].find(")") != -1:
-    #     if list_words[1].find("(") == -1:
-    #         print("ERROR: incorrect setence")
-    #         return True
+    # pegue (field1,field2,...) de [table_name]
+    if list_words[1].find(")") != -1:
+        if list_words[1].find("(") == -1:
+            print("ERROR: incorrect setence")
+            return True
 
-    # if list_words[1].find("(") != -1:
-    #     if list_words[1].find(")") == -1:
-    #         print("ERROR: incorrect setence")
-    #         return True
+    if list_words[1].find("(") != -1:
+        if list_words[1].find(")") == -1:
+            print("ERROR: incorrect setence")
+            return True
 
-    #     else:
-    #         columns = list_words[1].split(",")
-    #         columns[0] = columns[0].replace("(", "")
-    #         columns[len(columns) - 1] = columns[len(columns) - 1].replace(")", "")
+        else:
+            fields = list_words[1].replace('(','')
+            fields = fields.replace(')','')
+            list_fields = fields.split(',')
 
-    #         for j in columns:
-    #             print(j)
+            fields_select = []
+
+            for i in range(len(list_tables)):
+                if list_tables[i] == table_name:
+                    cont = 0
+                    for line in data_select[i]:
+                        fields_select.append([])
+                        for key in line:
+                            for field in list_fields:
+                                if key == field:
+                                    fields_select[cont].append(line[key])
+                        cont += 1
+                    print(np.matrix(fields_select))
+                    return True
     return True

@@ -3,11 +3,14 @@ import csv
 import os
 from Queries.Searchs import query_search as search
 
-def query(command):
+def query(command:str):
     if command.find(cmds.USE) != -1:
         BDName_start = command.find(cmds.USE) + len(cmds.USE) + 1
-        cmds.BDName = command[BDName_start:]
-        SaveDatabaseInRam()
+        if os.path.exists(cmds.ABS_FILE_PATH + "/" + command[BDName_start:]):
+            cmds.BDName = command[BDName_start:]
+            SaveDatabaseInRam()
+        else:
+            print("ERROR: invalid database")
     
     elif command.find(cmds.SELECT) != -1:
         if cmds.BDName != " ":
