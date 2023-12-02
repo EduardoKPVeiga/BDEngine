@@ -3,6 +3,7 @@ import csv
 import os
 from Queries.Searchs import query_search as search
 from Queries.Inserts import query_insert
+from Queries.Deletes import query_delete
 
 def query(command):
     if command.find(cmds.USE) != -1: 
@@ -20,15 +21,15 @@ def query(command):
             query_insert.insert(command)
         else:
             print("ERROR: no database selected")
-    
     elif command.find(cmds.DELETE) != -1:
         if command.find(cmds.DATABASE) != -1:
-            print("Delete database")
+            print("")
         elif command.find(cmds.DELETE_TABLE) != -1:
             print("Delete table")
         else:
             if cmds.BDName != " ":
                 print("Remove from table")
+                query_delete.delete(command)
             else:
                 print("ERROR: no database selected")
     

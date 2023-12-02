@@ -7,6 +7,8 @@
 # 
 #
 
+# remova-222,111,222,333-de-teste.csv
+
 BDName = " "
 BD_FILE_PATH = "Files/"
 LIST_TABLES_FILE_NAME = "list_tables.csv"

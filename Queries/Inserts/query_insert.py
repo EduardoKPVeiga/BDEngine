@@ -5,9 +5,11 @@ import os
 def insert(command:str):
      
     listacomandos = command.split('-')
-    
+          
     tabela = listacomandos[3]
-           
+    
+    print(tabela)       
+   
     dados = [listacomandos[1].split(',')]
     
     if listacomandos[2] != cmds.INTO:
