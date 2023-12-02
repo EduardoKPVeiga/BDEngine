@@ -2,6 +2,7 @@ import commands as cmds
 import csv
 import os
 from Queries.Searchs import query_search as search
+from Queries.Inserts import query_insert
 
 def query(command:str):
     if command.find(cmds.USE) != -1:
@@ -17,10 +18,9 @@ def query(command:str):
             return search.query(command)
         else:
             print("ERROR: no database selected")
-
     elif command.find(cmds.INSERT) != -1:
         if cmds.BDName != " ":
-            print("Insert")
+            query_insert.insert(command)
         else:
             print("ERROR: no database selected")
     
