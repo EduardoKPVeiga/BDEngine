@@ -3,9 +3,9 @@ import os
 # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 # use bancoTeste
-# pegue (campo1,campo2,campo3) de 'tabela' onde 'condicao'
+# pegue (campo1,campo2,campo3) de 'tabela' onde 'campo' 'condicao' 'valor'
 # pegue * de 'tabela'
-#
+#  
 #
 #
 
