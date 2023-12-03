@@ -26,10 +26,14 @@ def query(command):
             print("ERROR: no database selected")
     elif command.find(cmds.DELETE) != -1:
         if command.find(cmds.DATABASE) != -1:
-            print("")
-        elif command.find(cmds.DELETE_TABLE) != -1:
+            print("Delete database")
+            query_delete.deletedatabase(command)
+            #remova-banco
+        if command.find(cmds.DELETE_TABLE) != -1:
             print("Delete table")
-        else:
+            query_delete.deletetable(command)
+            #remova-aTabela-nomedatabela
+        if command.find(cmds.DELETE_TABLE) == False or command.find(cmds.DELETE_TABLE) == False:
             if cmds.BDName != " ":
                 print("Remove from table")
                 query_delete.delete(command)
