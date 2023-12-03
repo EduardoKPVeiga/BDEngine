@@ -9,7 +9,7 @@ def insert(command:str):
         print("erro: comando errado ou inválido")
         return
     else:
-        tabela = os.path.join("Files", "bdtest", listacomandos[3])
+        tabela = os.path.join("Files", cmds.BDName, listacomandos[3])
         #testar se a linha existe?
         dados = [listacomandos[1].split(',')]
      
