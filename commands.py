@@ -6,7 +6,7 @@ import os
 # pegue (campo1,campo2,campo3) de 'tabela' onde 'campo' 'condicao' 'valor'
 # pegue * de 'tabela'
 # ponha-88888,KKKKKKK,PPPPPPP,0000.98-em-TESTE.csv
-# 
+# pegue * de [tabela1],[tabela2] junte usando [campo]
 #
 
 # remova-222,111,222,aaa-de-teste.csv
@@ -16,7 +16,7 @@ BD_FILE_PATH = "Files/"
 ABS_FILE_PATH = os.path.join(os.path.dirname("__main__"), BD_FILE_PATH)
 LIST_TABLES_FILE_NAME = "list_tables.csv"
 
-# SQL
+# DB Language
 SELECT = "pegue"
 INTO = "em"
 DELETE = "remova"
@@ -26,12 +26,14 @@ DELETE_TABLE = DELETE + " " + TABLE
 FROM = "de"
 WHERE = "onde"
 ORDER = "ordene"
-BY = "usando"
+BY = "com"
 ASC = "asc"
 DESC = "desc"
 USE = "use"
 DATA = "dados"
 INSERT = "ponha"
+JOIN = "junte"
+USING = "usando"
 
 # CMD
 IMPORT = "import"

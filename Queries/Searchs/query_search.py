@@ -29,13 +29,14 @@ def query(command:str) -> bool:
 
     # pegue * de [table_name]
     if list_words[1] == "*" or list_words[1] == "(*)":
-        for i in range(len(list_tables)):
-            if list_tables[i] == table_name:
-                matrix_aux = WhereCondition(matrix=data_select[i], command=list_words)
-                matrix_aux = OrderByCondition(matrix=matrix_aux, command=list_words)
-                PrintTable(matrix_aux)
+        matrix_aux = JoinCondition(list_words)
+        if matrix_aux == None:
+            return True
+        matrix_aux = WhereCondition(matrix=matrix_aux, command=list_words)
+        matrix_aux = OrderByCondition(matrix=matrix_aux, command=list_words)
+        PrintTable(matrix_aux)
 
-                return True
+        return True
 
     # pegue (field1,field2,...) de [table_name]
     if list_words[1].find(")") != -1:
@@ -54,27 +55,22 @@ def query(command:str) -> bool:
             list_fields = fields.split(',')
 
             fields_select = []
+            cont = 0
+            matrix_aux = JoinCondition(list_words)
+            for line in matrix_aux:
+                fields_select.append({})
+                for key in line:
+                    for field in list_fields:
+                        if key == field:
+                            fields_select[cont][field] = line[key]
+                cont += 1
 
-            # Verifica se a tabela existe
-            for i in range(len(list_tables)):
-                if list_tables[i] == table_name:
-                    cont = 0
+            # Verifica e trata os comandos 'where' e 'order by'
+            matrix_aux = WhereCondition(matrix=fields_select, command=list_words)
+            matrix_aux = OrderByCondition(matrix=matrix_aux, command=list_words)
 
-                    # Seleciona a matriz que corresponde a tabela
-                    for line in data_select[i]:
-                        fields_select.append({})
-                        for key in line:
-                            for field in list_fields:
-                                if key == field:
-                                    fields_select[cont][field] = line[key]
-                        cont += 1
-
-                    # Verifica e trata os comandos 'where' e 'order by'
-                    matrix_aux = WhereCondition(matrix=fields_select, command=list_words)
-                    matrix_aux = OrderByCondition(matrix=matrix_aux, command=list_words)
-
-                    PrintTable(matrix_aux)
-                    return True
+            PrintTable(matrix_aux)
+            return True
     return True
 
 def WhereCondition(matrix:[{}],command:[]) -> [{}]:
@@ -200,6 +196,67 @@ def OrderByCondition(matrix:[{}],command:[]) -> [{}]:
             return []
 
     return matrix
+
+def JoinCondition(commands:[]) -> [{}]:
+    
+    matrix1 = []
+    matrix2 = []
+    field_comparison = ""
+    tables_to_join = []
+    has_join = False
+    has_using = False
+
+    for i in range(len(commands)):
+        if commands[i] == cmds.JOIN:
+            has_join = True
+        if has_join:
+            if commands[i] == cmds.USING:
+                field_comparison = commands[i + 1]
+                has_using = True
+                break
+
+    for i in range(len(commands)):
+        if commands[i] == cmds.FROM:
+            if has_join and has_using:
+                tables_to_join = commands[i + 1].split(",")
+            else:
+                tables_to_join.append(commands[i + 1])
+            break
+
+    for table_name_to_join in tables_to_join:
+        table_valid = False
+        for table_name in list_tables:
+            if table_name_to_join == table_name:
+                table_valid = True
+
+    if table_valid == False:
+        print("ERROR: invalid table")
+        return
+                
+    if has_join and has_using and len(tables_to_join) == 2:
+        for i in range(len(list_tables)):
+            if list_tables[i] == tables_to_join[0]:
+                matrix1 = data_select[i].copy()
+            elif list_tables[i] == tables_to_join[1]:
+                matrix2 = data_select[i].copy()
+
+        matrix_aux = []
+        for row1 in matrix1:
+            for row2 in matrix2:
+                if row1.get(field_comparison) == row2.get(field_comparison):
+                    merged_line_dict = row1.copy()
+                    merged_line_dict.update(row2)
+                    matrix_aux.append(merged_line_dict.copy())
+        return matrix_aux
+    else:
+        if len(tables_to_join) == 1:
+            for i in range(len(list_tables)):
+                if list_tables[i] == tables_to_join[0]:
+                    return data_select[i].copy()
+        else:
+            if (has_join and has_using == False) or (has_join == False and has_using):
+                print("Error: invalid join")
+                return
 
 def PrintTable(matrix:[{}]):
     table_line_num = len(matrix)
