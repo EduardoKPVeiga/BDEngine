@@ -1,7 +1,8 @@
 from Imports import main_import
 from Queries import query_main
-from Queries.Inserts import query_insert
 import commands as cmds
+import csv
+import os
 
 def main():
     # takes query from user
@@ -25,3 +26,17 @@ if __name__ == "__main__":
     main_running = True
     while main_running == True:
         main_running = main()
+
+def write_csv(cursor, colum_names:list, bdname:str, table_name:str) -> bool:
+    path_for_file = os.path.join(cmds.ABS_FILE_PATH, bdname, table_name)
+    table_data = []
+
+    for row in cursor:
+        table_data.append(row)
+
+    # headers = cursor.column_names
+
+    with open(path_for_file, "w", newline="") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=colum_names)
+        writer.writeheader()
+        writer.writerows(table_data)

@@ -7,7 +7,7 @@ def Import():
     while not (option == cmds.FROM_MYSQL or option == cmds.FROM_CSV):
         option = input(">> ")
     if option == cmds.FROM_MYSQL:
-        return mysql.Import()
+        return mysql.mysqlimport()
     elif option == cmds.FROM_CSV:
         return csv.Import()
     return True
