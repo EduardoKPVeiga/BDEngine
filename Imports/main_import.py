@@ -4,6 +4,7 @@ import commands as cmds
 
 def Import():
     option = None
+    print("Import from where?")
     while not (option == cmds.FROM_MYSQL or option == cmds.FROM_CSV):
         option = input(">> ")
     if option == cmds.FROM_MYSQL:
