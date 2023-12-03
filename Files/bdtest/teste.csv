@@ -8,5 +8,4 @@ prereq,prereq.csv
 section,section.csv
 student,student.csv
 takes,takes.csv
-teaches,teaches.csv
-time_slot,time_slot.csv
+aaa,aaa

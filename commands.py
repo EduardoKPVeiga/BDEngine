@@ -6,7 +6,9 @@
 # ponha-88888,KKKKKKK,PPPPPPP,0000.98-em-TESTE.csv
 # 
 #
-
+# atualize-tabela-com-dados-onde-condicao
+# remova-aTabela-teste.csv
+# remova-banco (apaga o banco em uso)
 # remova-222,111,222,aaa-de-teste.csv
 
 BDName = " "
@@ -25,8 +27,10 @@ WHERE = "onde"
 ORDER_BY = "ordene por"
 USE = "use"
 DATA = "dados"
+WITH = "com"
 
 # CMD
+UPDATE = "atualize"
 INSERT = "ponha"
 IMPORT = "import"
 QUERY = "query"

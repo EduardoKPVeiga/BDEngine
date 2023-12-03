@@ -30,13 +30,17 @@ def query(command):
             print("Delete table")
             query_delete.deletetable(command)
             #remova-aTabela-nomedatabela
-        if command.find(cmds.DELETE_TABLE) == False or command.find(cmds.DELETE_TABLE) == False:
+        if cmds.DELETE_TABLE not in command and cmds.DATABASE not in command:
             if cmds.BDName != " ":
                 print("Remove from table")
                 query_delete.delete(command)
             else:
                 print("ERROR: no database selected")
-    
+    elif command.find(cmds.UPDATE) != -1:
+        if cmds.BDName != " ":
+            query_insert.update(command)
+        else:
+            print("ERROR: no database selected")
     elif command.find(cmds.EXIT) != -1:
         cmds.BDName = " "
         print("")
