@@ -1,5 +1,6 @@
 from Imports import main_import
 from Queries import query_main
+from Queries.Inserts import query_insert
 import commands as cmds
 import csv
 import os

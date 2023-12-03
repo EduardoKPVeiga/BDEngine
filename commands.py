@@ -9,6 +9,8 @@ import os
 # 
 #
 
+# remova-222,111,222,aaa-de-teste.csv
+
 BDName = " "
 BD_FILE_PATH = "Files/"
 ABS_FILE_PATH = os.path.join(os.path.dirname("__main__"), BD_FILE_PATH)
