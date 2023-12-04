@@ -8,7 +8,9 @@ import os
 # ponha-88888,KKKKKKK,PPPPPPP,0000.98-em-TESTE.csv
 # pegue * de [tabela1],[tabela2] junte usando [campo]
 #
-
+# atualize-tabela-com-dados-onde-condicao
+# remova-aTabela-teste.csv
+# remova-banco (apaga o banco em uso)
 # remova-222,111,222,aaa-de-teste.csv
 
 BDName = " "
@@ -34,6 +36,7 @@ DATA = "dados"
 INSERT = "ponha"
 JOIN = "junte"
 USING = "usando"
+UPDATE = "atualize"
 
 # CMD
 IMPORT = "import"

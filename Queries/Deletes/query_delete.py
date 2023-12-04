@@ -1,6 +1,7 @@
 import csv
 import commands as cmds
 import os
+import shutil
 
 def delete(command:str):     
          
@@ -15,15 +16,18 @@ def delete(command:str):
         with open(tabela, 'r') as f:
             linhas = csv.reader(f, delimiter=';')
             lst = list((linhas))        
-               
+        print(lst)       
         if lista in lst:
             lst.remove(lista)   
             #altera a lista para uma lista de inteiros por conflito com (')
-            lista_int = [[int(num) for num in s[0].split(',')] for s in lst]
+            nova_lista_de_listas = []
+            for sublist in lst:
+                nova_sublista = [part.replace("'", "").replace('"', '') for item in sublist for part in item.split(',')]
+                nova_lista_de_listas.append(nova_sublista)
             
             with open(tabela, 'w', newline='') as f: 
                 writer = csv.writer(f)
-                writer.writerows(lista_int)
+                writer.writerows(nova_lista_de_listas)
         else:
             print("Nenhuma linha correspondente")
             return
@@ -38,7 +42,7 @@ def deletedatabase(command:str):
         #deleta
         print("deletando  " + cmds.BDName)
         try:
-            os.removedirs(os.path.join("Files", cmds.BDName))
+            shutil.rmtree(os.path.join("Files", cmds.BDName))
         except:
             print("path not found (DATABASE)!")
     elif decisao == 'N':
