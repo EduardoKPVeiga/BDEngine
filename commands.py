@@ -16,7 +16,7 @@ import os
 BDName = " "
 BD_FILE_PATH = "Files/"
 ABS_FILE_PATH = os.path.join(os.path.dirname("__main__"), BD_FILE_PATH)
-LIST_TABLES_FILE_NAME = "list_tables.csv"
+LIST_TABLES_FILE_NAME = "list_tables"
 
 # DB Language
 SELECT = "pegue"

@@ -58,7 +58,7 @@ def SaveDatabaseInRam():
 
     table_select = []
 
-    with open(dir_path + "/" + cmds.LIST_TABLES_FILE_NAME, newline='') as csvfile_list_table:
+    with open(dir_path + "/" + cmds.LIST_TABLES_FILE_NAME + ".csv", newline='') as csvfile_list_table:
         reader = csv.DictReader(csvfile_list_table)
         cont_tables = 0
         for row in reader:

@@ -49,9 +49,10 @@ def mysqlimport():
    
     cursor = conn.cursor(dictionary=True,buffered=True)
     
-    show_tables(cursor)
-    print('Type the table to import : ')
-    table = input('>> ')
+    #show_tables(cursor)
+    #print('Type the table to import : ')
+    #table = input('>> ')
+    table = cmds.ALL
 
     while True:
         if mysql_check_table(table,cursor) :
@@ -63,6 +64,8 @@ def mysqlimport():
         
     headers = cursor.column_names
     list_tables_cursor = []
+    list_tables_dict = []
+    list_tables_dict_header = ["name", "filename"]
     if table == cmds.ALL:
         print()
         cursor.execute("show tables;")
@@ -71,13 +74,19 @@ def mysqlimport():
                 list_tables_cursor.append(row[key].strip("'"))
 
         for table_name in list_tables_cursor:
+
+            list_tables_dict_item = {list_tables_dict_header[0] : table_name, list_tables_dict_header[1] : table_name + ".csv"}
+            list_tables_dict.append({})
+            list_tables_dict[len(list_tables_dict) - 1] = list_tables_dict_item.copy()
+
             for key in table_name:
                 mysql_check_table(table_name,cursor)
                 headers = cursor.column_names
-                main.write_csv(cursor=cursor, colum_names=headers, bdname=connect.database_glob, table_name=table_name)
-                
+                main.write_csv(cursor=cursor, colum_names=headers, bdname=connect.database_glob, filename=table_name)
+        
+        main.write_csv(cursor=list_tables_dict, colum_names=list_tables_dict_header, bdname=connect.database_glob, filename=cmds.LIST_TABLES_FILE_NAME)    
     else:
-        main.write_csv(cursor=cursor, colum_names=headers, bdname=connect.database_glob, table_name=table)
+        main.write_csv(cursor=cursor, colum_names=headers, bdname=connect.database_glob, filename=table)
             
     cursor.close()
     conn.close()

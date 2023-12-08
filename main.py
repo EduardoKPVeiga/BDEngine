@@ -28,7 +28,7 @@ if __name__ == "__main__":
     while main_running == True:
         main_running = main()
 
-def write_csv(cursor, colum_names:list, bdname:str, table_name:str) -> bool:
+def write_csv(cursor, colum_names:list, bdname:str, filename:str) -> bool:
     path_for_file = os.path.join(cmds.ABS_FILE_PATH, bdname)
     table_data = []
 
@@ -39,7 +39,7 @@ def write_csv(cursor, colum_names:list, bdname:str, table_name:str) -> bool:
     if os.path.exists(path_for_file) == False:
         os.mkdir(path_for_file)
 
-    path_for_file = os.path.join(path_for_file, table_name + '.csv')
+    path_for_file = os.path.join(path_for_file, filename + '.csv')
 
     with open(path_for_file, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=colum_names)

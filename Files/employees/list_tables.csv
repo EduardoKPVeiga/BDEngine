@@ -1,0 +1,9 @@
+name,filename
+current_dept_emp,current_dept_emp.csv
+departments,departments.csv
+dept_emp,dept_emp.csv
+dept_emp_latest_date,dept_emp_latest_date.csv
+dept_manager,dept_manager.csv
+employees,employees.csv
+salaries,salaries.csv
+titles,titles.csv

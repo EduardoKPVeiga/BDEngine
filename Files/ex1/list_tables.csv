@@ -1,0 +1,12 @@
+name,filename
+advisor,advisor.csv
+classroom,classroom.csv
+course,course.csv
+department,department.csv
+instructor,instructor.csv
+prereq,prereq.csv
+section,section.csv
+student,student.csv
+takes,takes.csv
+teaches,teaches.csv
+time_slot,time_slot.csv
